@@ -1,7 +1,13 @@
 using api;
-using NSwag.AspNetCore;
+using NLog;
+using NLog.Web;
+
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Debug("Launching.");
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 // Add services to the container.
 builder.Services.ConfigureServices();
@@ -21,4 +27,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+logger.Debug("Initialization Finished.");
 app.Run();
