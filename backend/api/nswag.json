@@ -11,7 +11,7 @@
   "codeGenerators": {
     "openApiToTypeScriptClient": {
       "className": "DarkMatterClient",
-      "output": "../../DarkMatterClient.ts",
+      "output": "../../web/dark-matter-web/src/client/DarkMatterClient.ts",
       "generateDtoTypes": true,
       "operationGenerationMode": "SingleClientFromOperationId",
       "template": "fetch"
