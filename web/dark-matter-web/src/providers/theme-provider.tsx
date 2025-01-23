@@ -33,7 +33,14 @@ export function ThemeProvider({ children }: Readonly<PropsWithChildren>) {
             setTheme(true);
         } else if (value == "light") {
             setTheme(false);
+        } else if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) {
+            setDark(true);
+            setTheme(true);
         }
+
     }, []);
 
     const toggle = () => {
@@ -44,7 +51,11 @@ export function ThemeProvider({ children }: Readonly<PropsWithChildren>) {
     }
 
     const setTheme = (dark: boolean) => {
-        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        if (dark) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
     }
 
     return (
